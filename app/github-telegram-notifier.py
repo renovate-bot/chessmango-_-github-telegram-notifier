@@ -105,12 +105,12 @@ def handle_sigterm(signal, frame):
 if __name__ == "__main__":
     # Register SIGTERM handler
     signal.signal(signal.SIGTERM, handle_sigterm)
-    logging.info("Starting GitHub notifications bot")
+    logging.info("Starting GitHub Telegram Notifier")
     try:
         asyncio.run(run())
     except KeyboardInterrupt:
-        logging.info("Shutting down GitHub notifications bot...")
+        logging.info("Shutting down GitHub Telegram Notifier...")
     except Exception as e:
         logging.exception("Unhandled exception in main loop")
         raise e
-    logging.info("GitHub notifications bot finished successfully")
+    logging.info("GitHub Telegram Notifier finished successfully")
