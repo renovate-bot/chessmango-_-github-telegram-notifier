@@ -8,9 +8,9 @@ import sys
 import telegram
 
 # Define secrets
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-if GITHUB_TOKEN is None:
-    raise ValueError("GITHUB_TOKEN environment variable must be set")
+GH_TOKEN = os.getenv("GH_TOKEN")
+if GH_TOKEN is None:
+    raise ValueError("GH_TOKEN environment variable must be set")
 TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 if TELEGRAM_TOKEN is None:
     raise ValueError("TELEGRAM_TOKEN environment variable must be set")
@@ -18,7 +18,7 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 if TELEGRAM_CHAT_ID is None:
     raise ValueError("TELEGRAM_CHAT_ID environment variable must be set")
 
-GITHUB_API_URL = os.getenv("GITHUB_API_URL", "https://api.github.com")
+GH_API_URL = os.getenv("GH_API_URL", "https://api.github.com")
 
 # Define the path to the file that stores the IDs of the notifications that have already been sent
 NOTIFICATIONS_FILE = os.getenv("NOTIFICATIONS_FILE", "state/notifications.json")
@@ -74,8 +74,8 @@ async def send_telegram_message(message):
 
 
 async def main(session):
-    headers = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
-    url = f"{GITHUB_API_URL}/notifications"
+    headers = {"Authorization": f"Bearer {GH_TOKEN}"}
+    url = f"{GH_API_URL}/notifications"
     notifications = await fetch_notifications(session, url, headers)
     unread_notifications = get_unread_notifications(notifications)
     sent_notifications = load_notifications()
