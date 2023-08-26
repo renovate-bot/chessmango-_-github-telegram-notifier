@@ -1,4 +1,4 @@
-FROM docker.io/python:3.11.4-alpine3.17
+FROM docker.io/python:3.11.5-alpine3.17
 
 COPY app/* /
 
